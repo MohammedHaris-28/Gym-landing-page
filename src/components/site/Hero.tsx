@@ -36,7 +36,9 @@ export function Hero() {
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </a>
-            <a href="#contact" className="btn-ghost">Book Free Trial</a>
+            <a href="/BMICalc" className="btn-ghost">
+              Calculate BMI
+            </a>
           </div>
         </div>
 

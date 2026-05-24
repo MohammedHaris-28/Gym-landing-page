@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BMICalcRouteImport } from './routes/BMICalc'
 import { Route as IndexRouteImport } from './routes/index'
 
+const BMICalcRoute = BMICalcRouteImport.update({
+  id: '/BMICalc',
+  path: '/BMICalc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/BMICalc': typeof BMICalcRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/BMICalc': typeof BMICalcRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/BMICalc': typeof BMICalcRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/BMICalc'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/BMICalc'
+  id: '__root__' | '/' | '/BMICalc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BMICalcRoute: typeof BMICalcRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/BMICalc': {
+      id: '/BMICalc'
+      path: '/BMICalc'
+      fullPath: '/BMICalc'
+      preLoaderRoute: typeof BMICalcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BMICalcRoute: BMICalcRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
