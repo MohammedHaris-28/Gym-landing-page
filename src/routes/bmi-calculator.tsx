@@ -5,7 +5,7 @@ import { Calculator, Scale, Ruler, ArrowRight } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 
-export const Route = createFileRoute("/BMICalc")({
+export const Route = createFileRoute("/bmi-calculator")({
   head: () => ({
     meta: [
       {
